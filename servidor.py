@@ -16,6 +16,8 @@ async def rootGet():
 # métodos post
 @app.post("/")
 async def rootPost(request: Request):
-    dados = await request.json
-    resultado += dados
+    dados = await request.json()
+    global resultado
+    for key, value in dados.items():
+        resultado[key] = value
     return resultado
