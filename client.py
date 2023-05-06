@@ -2,14 +2,16 @@ import requests
 
 URL = "http://127.0.0.1:8000"
 
-# POST
-dadosEnviados = {"nome": "pedro henrique de avila tonin", "telefone": "(45)99800-9100"}
-response = requests.post(f"{URL}/", json=dadosEnviados)
+print("\n -- MÉTODO POST -- ")
+dadosEnviados = {"nome": "emanuelly cristhyna batista", "telefone": "(45)99977-0902"}
+response = requests.post(f"{URL}/adicionar-contato/", json=dadosEnviados)
 print(response.status_code)
 print(response.json())
 
-# GET
-# response = requests.get(f"{URL}/")
-# print(response.status_code)
-# content = response.json()
-# print(content)
+
+print("\n -- MÉTODO GET -- ")
+response = requests.get(f"{URL}/agenda/")
+print(f"STATUS CODE = {response.status_code}")
+content = response.json()
+print("CONTEÚDO:")
+print(content)

@@ -1,12 +1,12 @@
-def insertIntoNomes(nome: str):
+def insertIntoAgenda(nome: str, telefone: str):
     query = f"""
-        insert into nomes (nome) values ("{nome}")
+        insert into agendaContatos (nome, telefone) values ("{nome}", "{telefone}");
     """
     return query
 
 
-def insertIntoTelefones(telefone: str):
+def selectTable():
     query = f"""
-        insert into telefones (telefone) values ("{telefone}")
+        select * from agendaContatos;
     """
     return query

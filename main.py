@@ -1,25 +1,16 @@
 from fastapi import FastAPI, Request
-import json
 from banco import *
 
 app = FastAPI()
 
 
-# @app.on_event("startup")
-# async def carregarItensDB():
-#     global db
-#     conectarBanco()
+@app.get("/agenda/")
+async def rootGet():
+    agendaContatos = receberDadosDoBanco()
+    return agendaContatos
 
 
-# # métodos get
-# @app.get("/")
-# async def rootGet():
-
-#     return json.dumps(dadosRecebidos, indent=4)
-
-
-# métodos post
-@app.post("/")
+@app.post("/adicionar-contato/")
 async def rootPost(request: Request):
     dadosRecebidos = await request.json()
     dadosToDict = dict()
