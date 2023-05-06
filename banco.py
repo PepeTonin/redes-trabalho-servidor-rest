@@ -6,13 +6,15 @@ import json
 
 def receberDadosDoBanco():
     try:
-        # instancia um objeto mysql.connector na variavel db_connection
-        db_connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Pessoas*951*",
-            database="trabalhoRedes",
-        )
+        with open("cfg.json") as configFile:
+            configFile_dict = json.load(configFile)
+            # instancia um objeto mysql.connector na variavel db_connection
+            db_connection = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password=configFile_dict["DbPass"],
+                database=configFile_dict["DbName"],
+            )
 
         cursor = db_connection.cursor()
         print("Conexão com o banco de dados feita!")
