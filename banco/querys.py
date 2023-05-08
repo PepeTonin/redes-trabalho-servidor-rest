@@ -1,34 +1,3 @@
-def insertIntoAgenda(nome: str, telefone: str):
-    query = f"""
-        insert into agendaContatos (nome, telefone) values ("{nome}", "{telefone}");
-    """
-    return query
-
-
-def insertIntoNomes(nome: str):
-    query = f"""
-        insert into nomes (nome) values ("{nome}");
-    """
-    return query
-
-
-def insertIntoTelefones(idNome: int, telefone: str):
-    query = f"""
-        insert into telefones (idNome, telefone) values ({idNome}, "{telefone}");
-    """
-    return query
-
-
-def insertIntoEnderecos(
-    idNome: int, estado: str, cidade: str, bairro: str, rua: str, numero: int
-):
-    query = f"""
-        insert into enderecos (idNome, estado, cidade, bairro, rua, numero)
-        values ({idNome}, "{estado}", "{cidade}", "{bairro}", "{rua}", {numero});
-    """
-    return query
-
-
 def insertIntoTable(dadosRecebidos: dict, tabelaReferencia: str):
     if tabelaReferencia == "nomes":
         nome = dadosRecebidos.get("nome")
