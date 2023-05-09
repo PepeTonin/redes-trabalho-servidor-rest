@@ -69,7 +69,7 @@ with tab2:
                 # o nome selecionado na lista de nomes
                 idNome = listaIds[listaNomes.index(nome)]
                 # faz um post para a tabela de telefones
-                postTelefones(idNome, telefone)
+                st.write(postTelefones(idNome, telefone))
 
     with tab2_2:
         st.header("Adicionar endereco a cadastro existente")
@@ -99,7 +99,7 @@ with tab2:
                 # o nome selecionado na lista de nomes
                 idNome = listaIds[listaNomes.index(nome)]
                 # faz um post para a tabela de telefones
-                postEnderecos(idNome, estado, cidade, bairro, rua, numero)
+                st.write(postEnderecos(idNome, estado, cidade, bairro, rua, numero))
 
 with tab3:
     st.header("Consultar cadastros")
@@ -125,9 +125,19 @@ with tab3:
                 # pega o valor que está na lista de ids, na mesma posição que
                 # o nome selecionado na lista de nomes
                 idNome = listaIds[listaNomes.index(nome)]
-                resultado = getCadastrosPorNome(idNome)
                 st.write(f"Mostrando resultados para **{nome}**")
-                st.table(resultado)
+                # faz uma requisição get na tabela telefones tendo como parametro o id desejado
+                st.write("**TELEFONES**")
+                telefones = getTabelaWhereIdNomeEspecificado("telefones", idNome)
+                # mostra o resultado numa tabela
+                st.table(telefones)
+                # faz uma requisição get na tabela enderecos tendo como parametro o id desejado
+                st.write("**ENDEREÇOS**")
+                enderecos = getTabelaWhereIdNomeEspecificado("enderecos", idNome)
+                # mostra o resultado numa tabela
+                st.table(enderecos)
     with tab3_2:
         st.write("**Mostrando todos os cadastros**")
+        # faz uma requisição do tipo get pedindo todos os dados cadastrados
+        # mostra o resultado numa tabela
         st.table(getTodosOsCadastros())

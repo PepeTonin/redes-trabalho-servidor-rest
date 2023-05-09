@@ -2,11 +2,12 @@ import mysql.connector
 from mysql.connector import errorcode
 import json
 from banco.querys import *
-from banco.auxiliarBanco import *
+from banco.retornoBancoToDict import *
 
 
 def retornaTabela(tabelaReferencia: str):
     try:
+        # abre o arquivo "cfg.json" onde estão o nome da database e a senha
         with open("./banco/cfg.json") as configFile:
             configFile_dict = json.load(configFile)
             # instancia um objeto mysql.connector na variavel db_connection
@@ -43,8 +44,9 @@ def retornaTabela(tabelaReferencia: str):
             print(error)
 
 
-def retornaDadosDeNomeEspecificado(idNome: int):
+def retornaTabelaIdNomeEspecifico(tabelaReferencia: str, idNome: int):
     try:
+        # abre o arquivo "cfg.json" onde estão o nome da database e a senha
         with open("./banco/cfg.json") as configFile:
             configFile_dict = json.load(configFile)
             # instancia um objeto mysql.connector na variavel db_connection
@@ -58,7 +60,7 @@ def retornaDadosDeNomeEspecificado(idNome: int):
         cursor = db_connection.cursor()
         print("Conexão com o banco de dados feita!")
         # pega os dados de uma tabela do banco
-        query = selectJoinTablesItemId(idNome)
+        query = selectJoinTablesItemId(tabelaReferencia, idNome)
         cursor.execute(query)
         conteudoRetornado = cursor.fetchall()
         # encerra a conexão com o banco
@@ -66,7 +68,7 @@ def retornaDadosDeNomeEspecificado(idNome: int):
         print("Conexão com o banco encerrada!")
         # transforma o retorno do banco em dicionario
         resultado = dict()
-        resultado = retornoBancoParaDict("dados_nome_especifico", conteudoRetornado)
+        resultado = retornoBancoParaDict(tabelaReferencia, conteudoRetornado)
         # retorna o dicionário em formato json
         return json.dumps(resultado, indent=4)
 
@@ -83,6 +85,7 @@ def retornaDadosDeNomeEspecificado(idNome: int):
 
 def retornaTodosCadastros():
     try:
+        # abre o arquivo "cfg.json" onde estão o nome da database e a senha
         with open("./banco/cfg.json") as configFile:
             configFile_dict = json.load(configFile)
             # instancia um objeto mysql.connector na variavel db_connection

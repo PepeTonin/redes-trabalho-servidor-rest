@@ -5,6 +5,7 @@ from banco.getMethods import *
 app = FastAPI()
 
 
+# método post para adicionar um elemento a uma tabela
 @app.post("/adicionar/{tabelaReferencia}/")
 async def adicionarElemento(request: Request, tabelaReferencia: str):
     try:
@@ -18,19 +19,31 @@ async def adicionarElemento(request: Request, tabelaReferencia: str):
         return "ERRO"
 
 
+# método get para retornar valores de uma tabela
 @app.get("/tabela/{tabelaReferencia}/")
 async def mostrarElementos(tabelaReferencia: str):
-    resposta = retornaTabela(tabelaReferencia)
-    return resposta
+    try:
+        resposta = retornaTabela(tabelaReferencia)
+        return resposta
+    except:
+        return "ERRO"
 
 
-@app.get("/dados-cadastrados/{idNome}/")
-async def mostrarDadosDeNomeEspecificado(idNome: int):
-    resposta = retornaDadosDeNomeEspecificado(idNome)
-    return resposta
+# método get para retornar valores de uma tabela especifica a partir de um id de nome especifico
+@app.get("/tabela/{tabelaReferencia}/{idNome}/")
+async def mostrarElementosIdEspecifico(tabelaReferencia: str, idNome: int):
+    try:
+        resposta = retornaTabelaIdNomeEspecifico(tabelaReferencia, idNome)
+        return resposta
+    except:
+        return "ERRO"
 
 
+# método get para retornar todos os dados cadastrados
 @app.get("/todos-cadastros/")
 async def mostrarTodosOsCadastros():
-    resposta = retornaTodosCadastros()
-    return resposta
+    try:
+        resposta = retornaTodosCadastros()
+        return resposta
+    except:
+        return "ERRO"

@@ -1,3 +1,5 @@
+# função auxiliar para transformar o retorno do banco, que é uma lista, em um dicionário
+# varia de acordo com a tabela de origem
 def retornoBancoParaDict(tabelaReferencia: str, retornoBanco: list):
     saida = dict()
 
@@ -11,32 +13,17 @@ def retornoBancoParaDict(tabelaReferencia: str, retornoBanco: list):
     elif tabelaReferencia == "telefones":
         for i in range(len(retornoBanco)):
             saida[i] = {
-                "id": retornoBanco[i][0],
-                "idNome": retornoBanco[i][1],
-                "telefone": retornoBanco[i][2],
+                "telefone": retornoBanco[i][0],
             }
 
     elif tabelaReferencia == "enderecos":
         for i in range(len(retornoBanco)):
             saida[i] = {
-                "id": retornoBanco[i][0],
-                "idNome": retornoBanco[i][1],
-                "estado": retornoBanco[i][2],
-                "cidade": retornoBanco[i][3],
-                "bairro": retornoBanco[i][4],
-                "rua": retornoBanco[i][5],
-                "numero": retornoBanco[i][6],
-            }
-
-    elif tabelaReferencia == "dados_nome_especifico":
-        for i in range(len(retornoBanco)):
-            saida[i] = {
-                "telefone": retornoBanco[i][0],
-                "estado": retornoBanco[i][1],
-                "cidade": retornoBanco[i][2],
-                "bairro": retornoBanco[i][3],
-                "rua": retornoBanco[i][4],
-                "numero": retornoBanco[i][5],
+                "estado": retornoBanco[i][0],
+                "cidade": retornoBanco[i][1],
+                "bairro": retornoBanco[i][2],
+                "rua": retornoBanco[i][3],
+                "numero": retornoBanco[i][4],
             }
 
     elif tabelaReferencia == "todos_cadastros":

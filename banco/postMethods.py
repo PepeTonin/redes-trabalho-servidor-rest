@@ -6,6 +6,7 @@ from banco.querys import *
 
 def adicionarElementoNaTabela(dadosRecebidos: dict, tabelaReferencia: str):
     try:
+        # abre o arquivo "cfg.json" onde estão o nome da database e a senha
         with open("./banco/cfg.json") as configFile:
             configFile_dict = json.load(configFile)
             # instancia um objeto mysql.connector na variavel db_connection
