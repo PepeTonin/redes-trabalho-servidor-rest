@@ -69,7 +69,7 @@ with tab2:
                 # o nome selecionado na lista de nomes
                 idNome = listaIds[listaNomes.index(nome)]
                 # faz um post para a tabela de telefones
-                st.write(postTelefones(idNome, telefone))
+                postTelefones(idNome, telefone)
 
     with tab2_2:
         st.header("Adicionar endereco a cadastro existente")
@@ -99,7 +99,7 @@ with tab2:
                 # o nome selecionado na lista de nomes
                 idNome = listaIds[listaNomes.index(nome)]
                 # faz um post para a tabela de telefones
-                st.write(postEnderecos(idNome, estado, cidade, bairro, rua, numero))
+                postEnderecos(idNome, estado, cidade, bairro, rua, numero)
 
 with tab3:
     st.header("Consultar cadastros")
