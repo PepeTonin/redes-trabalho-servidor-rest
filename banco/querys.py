@@ -32,3 +32,24 @@ def selectTable(tabelaReferencia: str):
         select * from {tabelaReferencia};
     """
     return query
+
+
+def selectJoinTablesItemId(itemId: int):
+    query = f"""
+        select telefones.telefone, enderecos.estado, enderecos.cidade, enderecos.bairro, enderecos.rua, enderecos.numero
+        from nomes
+        inner join telefones on nomes.id = telefones.idNome
+        inner join enderecos on nomes.id = enderecos.idNome
+        where nomes.id = {itemId};
+    """
+    return query
+
+
+def selectJoinTablesAll():
+    query = f"""
+        select nomes.nome, telefones.telefone, enderecos.estado, enderecos.cidade, enderecos.bairro, enderecos.rua, enderecos.numero
+        from nomes
+        inner join telefones on nomes.id = telefones.idNome
+        inner join enderecos on nomes.id = enderecos.idNome;
+    """
+    return query

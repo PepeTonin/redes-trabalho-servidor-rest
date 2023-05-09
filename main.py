@@ -19,6 +19,18 @@ async def adicionarElemento(request: Request, tabelaReferencia: str):
 
 
 @app.get("/tabela/{tabelaReferencia}/")
-async def mostraElementos(tabelaReferencia: str):
+async def mostrarElementos(tabelaReferencia: str):
     resposta = retornaTabela(tabelaReferencia)
+    return resposta
+
+
+@app.get("/dados-cadastrados/{idNome}/")
+async def mostrarDadosDeNomeEspecificado(idNome: int):
+    resposta = retornaDadosDeNomeEspecificado(idNome)
+    return resposta
+
+
+@app.get("/todos-cadastros/")
+async def mostrarTodosOsCadastros():
+    resposta = retornaTodosCadastros()
     return resposta

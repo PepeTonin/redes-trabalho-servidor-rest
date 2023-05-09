@@ -103,4 +103,31 @@ with tab2:
 
 with tab3:
     st.header("Consultar cadastros")
-    # chamar método get
+    tab3_1, tab3_2 = st.tabs(["Consultar por nome", "Ver todos os cadastros"])
+    with tab3_1:
+        # faz um metodo get na tabela de nomes para obter listas
+        # com os nomes e seus repectivos ids já cadastrados
+        conteudo = getNomes()
+        listaIds = list()
+        listaNomes = list()
+        for elemento in conteudo.values():
+            listaIds.append(elemento["id"])
+            listaNomes.append(elemento["nome"])
+
+        with st.form("form_pesquisar_por_nome"):
+            nome = st.selectbox(
+                "Nome", listaNomes, key="nome para pesquisar na lista de cadastro"
+            )
+
+            submitted = st.form_submit_button("Pesquisar")
+
+            if submitted:
+                # pega o valor que está na lista de ids, na mesma posição que
+                # o nome selecionado na lista de nomes
+                idNome = listaIds[listaNomes.index(nome)]
+                resultado = getCadastrosPorNome(idNome)
+                st.write(f"Mostrando resultados para **{nome}**")
+                st.table(resultado)
+    with tab3_2:
+        st.write("**Mostrando todos os cadastros**")
+        st.table(getTodosOsCadastros())

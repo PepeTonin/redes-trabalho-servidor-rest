@@ -9,6 +9,16 @@ def getNomes():
     return json.loads(respostaServidor.json())
 
 
+def getCadastrosPorNome(idNome: int):
+    respostaServidor = requests.get(f"{URL}/dados-cadastrados/{idNome}/")
+    return json.loads(respostaServidor.json())
+
+
+def getTodosOsCadastros():
+    respostaServidor = requests.get(f"{URL}/todos-cadastros/")
+    return json.loads(respostaServidor.json())
+
+
 def postNomes(nome: str):
     dadosEnviar = {"nome": nome}
     requests.post(f"{URL}/adicionar/nomes/", json=dadosEnviar)
